@@ -134,14 +134,14 @@ html.append("""
 html.append("<h2>1. Script Execution Summary</h2>")
 html.append("""<table>
 <tr><th>Script</th><th>Description</th><th>Status</th><th>Notes</th></tr>
-<tr><td>(1) assemble_102219.do</td><td>Data assembly</td><td class="pass">PASS</td><td>21 intermediate datasets created</td></tr>
-<tr><td>(2) hc_simulation_120819.do</td><td>Main simulation</td><td class="pass">PASS</td><td>6 scenarios projected to 2100</td></tr>
-<tr><td>(3) hc_worldprojections_011320.do</td><td>World projections &amp; graphs</td><td class="pass">PASS</td><td>36 figures generated</td></tr>
-<tr><td>(4) npv_calculations_011320.do</td><td>NPV calculations</td><td class="pass">PASS</td><td>~15 min runtime; wbopendata replaced with static file</td></tr>
-<tr><td>(5) cambodia_counterfactual_011320.do</td><td>Cambodia analysis</td><td class="pass">PASS</td><td>Cambodia graph + results match</td></tr>
-<tr><td>(6) hc_education_compare_011320.do</td><td>Tertiary robustness</td><td class="pass">PASS</td><td>24 sec/ter comparison figures</td></tr>
-<tr><td>(7) fertility_table3_030226.do</td><td>Table 3: fertility channel</td><td class="pass">PASS</td><td>Pop-weighted; 8/24 exact match</td></tr>
-<tr><td>labor_participation_011320.do</td><td>Labor force participation (Figs 10-11)</td><td class="pass">PASS</td><td>Standalone script, clean session</td></tr>
+<tr><td>(1) assemble.do</td><td>Data assembly</td><td class="pass">PASS</td><td>21 intermediate datasets created</td></tr>
+<tr><td>(2) hc_simulation.do</td><td>Main simulation</td><td class="pass">PASS</td><td>6 scenarios projected to 2100</td></tr>
+<tr><td>(3) hc_worldprojections.do</td><td>World projections &amp; graphs</td><td class="pass">PASS</td><td>36 figures generated</td></tr>
+<tr><td>(4) npv_calculations.do</td><td>NPV calculations</td><td class="pass">PASS</td><td>~15 min runtime; wbopendata replaced with static file</td></tr>
+<tr><td>(5) cambodia_counterfactual.do</td><td>Cambodia analysis</td><td class="pass">PASS</td><td>Cambodia graph + results match</td></tr>
+<tr><td>(6) hc_education_compare.do</td><td>Tertiary robustness</td><td class="pass">PASS</td><td>24 sec/ter comparison figures</td></tr>
+<tr><td>(7) fertility_table3.do</td><td>Table 3: fertility channel</td><td class="pass">PASS</td><td>Pop-weighted; 8/24 exact match</td></tr>
+<tr><td>labor_participation.do</td><td>Labor force participation (Figs 10-11)</td><td class="pass">PASS</td><td>Standalone script, clean session</td></tr>
 </table>
 """)
 

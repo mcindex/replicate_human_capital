@@ -8,7 +8,7 @@ The following file exceeds GitHub's 50 MB limit and is **not included in the rep
 
 | File | Size | Source | How to obtain |
 |------|------|--------|---------------|
-| `hci_data_21Sept2018_FINAL.dta` | 111 MB | World Bank Human Capital Project (Kraay 2018) | Download from the [World Bank HCP data page](https://www.worldbank.org/en/publication/human-capital). The file is the September 21, 2018 release of the HCI micro-database in Stata format. Place in this directory. |
+| `hci_data_21Sept2018_FINAL.dta` | 111 MB | World Bank Human Capital Project (Kraay 2018) | [Download from Dropbox](https://www.dropbox.com/scl/fi/9jtptpqzsikai6oppcagk/hci_data_21Sept2018_FINAL.dta?rlkey=9ya2j985z73ecn2muve2gezsw&st=wje9nrcv&dl=0). The file is the September 21, 2018 release of the HCI micro-database in Stata format. Place in this directory. |
 
 ## All Input Files
 
@@ -27,7 +27,7 @@ The following file exceeds GitHub's 50 MB limit and is **not included in the rep
 | `data-2019-12-06.dta` | 5.3 MB | ILO labor force participation rates | ILO STAT (Dec 2019 download) |
 | `gdp_constant_ppp.xls` | 207 KB | GDP per capita, PPP (constant 2011 international $) | World Bank WDI |
 | `gross_capital_formation_0718.xls` | 265 KB | Gross capital formation (% of GDP) | World Bank WDI |
-| `hci_data_21Sept2018_FINAL.dta` | 111 MB | World Bank HCI micro-database (**not in repo — see above**) | Kraay (2018), World Bank HCP |
+| `hci_data_21Sept2018_FINAL.dta` | 111 MB | World Bank HCI micro-database (**not in repo — see above**) | Kraay (2018), World Bank HCP. [Download from Dropbox](https://www.dropbox.com/scl/fi/9jtptpqzsikai6oppcagk/hci_data_21Sept2018_FINAL.dta?rlkey=9ya2j985z73ecn2muve2gezsw&st=wje9nrcv&dl=0). |
 | `hlo_data_21Sept2018.dta` | 7.3 MB | Harmonized Learning Outcomes | World Bank HCP (Sept 2018 release) |
 | `masterdata.dta` | 1.2 MB | HCI master country list with codes | World Bank HCP |
 | `pwt90.dta` | 3.0 MB | Penn World Table version 9.0 | Feenstra, Inklaar & Timmer (2015) |
@@ -38,4 +38,4 @@ The following file exceeds GitHub's 50 MB limit and is **not included in the rep
 ## Notes
 
 - The World Bank HCP data files (`hci_data`, `hlo_data`, `asr_data`, `stunting_data`, `masterdata`) are all from the September 21, 2018 release, which corresponds to the version used for the original paper.
-- The 2019-vintage expenditure file is used by `(4) npv_calculations_011320.do` to exactly replicate Figure 9. The World Bank periodically revises historical data, so a current download will produce slightly different scatterplot positions.
+- The 2019-vintage expenditure file is used by `(4) npv_calculations.do` to exactly replicate Figure 9. The World Bank periodically revises historical data, so a current download will produce slightly different scatterplot positions.

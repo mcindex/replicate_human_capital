@@ -1,5 +1,5 @@
 /*******************************************************************************
-  (7) fertility_table3_030226.do
+  (7) fertility_table3.do
 
   Replicates Table 3: "Estimates of additional effect of human capital on
   GDP-per-capita through fertility channel"
@@ -24,7 +24,7 @@
   most remaining cells. The small discrepancies likely reflect intermediate
   rounding in the original hand/spreadsheet calculation.
 
-  Requires: hc_projections_102219.dta from Step 2
+  Requires: hc_projections.dta from Step 2
   Outputs:  results_table3.tex, table3_results.dta
 *******************************************************************************/
 
@@ -40,7 +40,7 @@ di "Elasticity of fertility w.r.t. human capital: `elast_fh'"
 di "Ashraf et al. ratio (income/TFR): `ashraf_ratio'"
 
 * ---- Load projection data ----
-use "$output/hc_projections_102219.dta", clear
+use "$output/hc_projections.dta", clear
 
 * Keep year 2050 only
 keep if year == 2050

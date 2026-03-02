@@ -22,7 +22,7 @@ else {
 foreach cat in world developing lowincome ssa {									// We produces the same figures for the following sub-categories, which we cycle over 
 
 	* Loading Projections file
-	use "$output/hc_projections_102219`fname'.dta", clear								
+	use "$output/hc_projections`fname'.dta", clear								
 
 	* Cutting down sample to category of countries we care about
 	if "`cat'" == "world" {														// For world, we keep everything
@@ -112,8 +112,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 		   xtitle("") 																			  ///
 		   graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) 				  ///
 		   legend(order(1 "Baseline" 2 "Closing `lrate50'% of gap per 5 years (typical)" 3 "Closing `lrate75'% per 5 years (optimistic)" 4 "Gap closed immediately") region(lcolor(white))) xsize(8) ysize(5)
-		   gr export "$graphs/hcpw_`cat'_011320`fname'.png", as(png) height(1500) width(2400) replace	
-		   gr export "$graphs/hcpw_`cat'_011320`fname'.eps", as(eps) replace	
+		   gr export "$graphs/hcpw_`cat'`fname'.png", as(png) height(1500) width(2400) replace	
+		   gr export "$graphs/hcpw_`cat'`fname'.eps", as(eps) replace	
 
 		   	
 	
@@ -126,8 +126,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 		   xtitle("")  xlabel(#8)												///
 		   graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) ///
 		   legend(order(1 "Baseline" 2 "Closing `lrate50'% of gap per 5 years (typical)" 3 "Closing `lrate75'% per 5 years (optimistic)"  4 "Gap closed immediately") region(lcolor(white))) xsize(8) ysize(5)
-		   gr export "$graphs/relative_income_`cat'_011320`fname'.png", as(png) height(1500) width(2400) replace	
-		   gr export "$graphs/relative_income_`cat'_011320`fname'.eps", as(eps) replace	
+		   gr export "$graphs/relative_income_`cat'`fname'.png", as(png) height(1500) width(2400) replace	
+		   gr export "$graphs/relative_income_`cat'`fname'.eps", as(eps) replace	
 
 	
 
@@ -183,8 +183,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 	gr_edit .plotregion1.added_text[2].DragBy -.0238316172918665 -1.274083842683885
 	
 		
-	gr export "$graphs/pov_`cat'_011320`fname'.png", as(png) width(2000) replace	
-	gr export "$graphs/pov_`cat'_011320`fname'.eps", as(eps)			 replace	
+	gr export "$graphs/pov_`cat'`fname'.png", as(png) width(2000) replace	
+	gr export "$graphs/pov_`cat'`fname'.eps", as(eps)			 replace	
 	
 	* Number of people not in poverty (Figure 7)
 
@@ -214,8 +214,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 	gr_edit .gmetric_mult = 0.9
 	gr_edit .title.style.editstyle size(medium) editcopy
 	
-	gr export "$graphs/poor_`cat'_011320`fname'.png", as(png) width(3000) replace	
-	gr export "$graphs/poor_`cat'_011320`fname'.eps", as(eps) replace	
+	gr export "$graphs/poor_`cat'`fname'.png", as(png) width(3000) replace	
+	gr export "$graphs/poor_`cat'`fname'.eps", as(eps) replace	
 	
 /*
 
@@ -250,7 +250,7 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 
 * Relative income gains (Figure 4) 
 * Loading Projections file
-use "$output/hc_projections_102219`fname'.dta", clear								
+use "$output/hc_projections`fname'.dta", clear								
 keep if year <= endyear
 
 sort wbcode year
@@ -274,8 +274,8 @@ twoway (scatter ending_gdp_ratio_sc1 starting_gdp, sort             mcolor(black
 		xlabel(1000 "1000" 10000 "10000" 100000 "100000")            ///
 		graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white)) ///
 		legend(order(1 "Closing `lrate50'% of gap per 5 years" 2 "Closing `lrate75'% per 5 years"  3 "Closing immediately") region(lcolor(white)))
-gr export "$graphs/income_gains_011320`fname'.png", as(png) width(3000) replace	
-gr export "$graphs/income_gains_011320`fname'.eps", as(eps) replace	
+gr export "$graphs/income_gains`fname'.png", as(png) width(3000) replace	
+gr export "$graphs/income_gains`fname'.eps", as(eps) replace	
 
 
 * Changes in poverty, by country (Figure 6)
@@ -284,8 +284,8 @@ graph dot (asis) ending_pov_constant ending_pov_sc* starting_pov if starting_pov
 	  legend(order( 5 "Poverty rate in 2015" 1 "Poverty rate in 2050 (baseline scenario)" 2 "Poverty rate in 2050 (typical scenario)" 3 "Poverty rate in 2050 (optimistic scenario)" 4 "Poverty rate in 2050 (immediate scenario)") cols(1) region(lcolor(white))) ///
 	   xsize(4) ysize(7) graphregion(fcolor(white) lcolor(white) ifcolor(white) ilcolor(white))			   ///
 	   marker(5, mcolor(black) msymbol(S))  marker(2, mcolor(black) 	) marker(3, mcolor(black) msymbol(T))  marker(4, mcolor(black) msymbol(X))   marker(1, mcolor(black) msymbol(+)) 
-gr export "$graphs/pov_gains_011320`fname'.png", as(png) width(2500) replace
-gr export "$graphs/pov_gains_011320`fname'.eps", as(eps)  replace
+gr export "$graphs/pov_gains`fname'.png", as(png) width(2500) replace
+gr export "$graphs/pov_gains`fname'.eps", as(eps)  replace
 
 	   
 exit

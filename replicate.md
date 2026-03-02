@@ -11,18 +11,18 @@ All Stata .do files are in `code/`. User-written packages are bundled in `code/a
 
 | Order | File | Description | Runtime |
 |-------|------|-------------|---------|
-| 1 | `(1) assemble_102219.do` | Assembles all input data. Calls 1.1 background. | ~1 min |
-| 1.1 | `1.1 (background) barrolee_ihme_conversion_011320.do` | IHME→Barro-Lee conversion. Called by (1). | (called) |
-| 2 | `(2) hc_simulation_120819.do` | Main simulation. Calls 2.1 background. | ~2 min |
-| 2.1 | `2.1 (background) scenario_102219.do` | Scenario calculations. Called by (2), (4), (5). | (called) |
-| 3 | `(3) hc_worldprojections_011320.do` | World projections & graphs (Figs 2-7). | ~1 min |
-| 4 | `(4) npv_calculations_011320.do` | NPV calculations (Fig 9). **Slow.** | ~15 min |
-| 5 | `(5) cambodia_counterfactual_011320.do` | Cambodia analysis (Fig 8). | ~2 min |
-| 1-ter | `(1) assemble_102219.do` | Re-run with tertiary education. | ~1 min |
-| 2-ter | `(2) hc_simulation_120819.do` | Re-run with tertiary education. | ~2 min |
-| 6 | `(6) hc_education_compare_011320.do` | Sec vs ter comparison (Appendix). | ~1 min |
-| 7 | `(7) fertility_table3_030226.do` | Table 3: fertility channel (Sec 6.1). | ~10 sec |
-| -- | `labor_participation_011320.do` | LFP analysis (Figs 10-11, standalone). | ~5 min |
+| 1 | `(1) assemble.do` | Assembles all input data. Calls 1.1 background. | ~1 min |
+| 1.1 | `1.1 (background) barrolee_ihme_conversion.do` | IHME→Barro-Lee conversion. Called by (1). | (called) |
+| 2 | `(2) hc_simulation.do` | Main simulation. Calls 2.1 background. | ~2 min |
+| 2.1 | `2.1 (background) scenario.do` | Scenario calculations. Called by (2), (4), (5). | (called) |
+| 3 | `(3) hc_worldprojections.do` | World projections & graphs (Figs 2-7). | ~1 min |
+| 4 | `(4) npv_calculations.do` | NPV calculations (Fig 9). **Slow.** | ~15 min |
+| 5 | `(5) cambodia_counterfactual.do` | Cambodia analysis (Fig 8). | ~2 min |
+| 1-ter | `(1) assemble.do` | Re-run with tertiary education. | ~1 min |
+| 2-ter | `(2) hc_simulation.do` | Re-run with tertiary education. | ~2 min |
+| 6 | `(6) hc_education_compare.do` | Sec vs ter comparison (Appendix). | ~1 min |
+| 7 | `(7) fertility_table3.do` | Table 3: fertility channel (Sec 6.1). | ~10 sec |
+| -- | `labor_participation.do` | LFP analysis (Figs 10-11, standalone). | ~5 min |
 
 ## Input Data
 
@@ -70,9 +70,9 @@ with the log-elasticity formula from Section 6.1. Results match 8 of 24 cells ex
 within 0.1–0.5 pp for the rest. See the .do file header for full methodology.
 
 ### Figures 10-11 (Labor Force Participation)
-`labor_participation_011320.do` must be run in a separate, clean Stata session because
+`labor_participation.do` must be run in a separate, clean Stata session because
 `npregress kernel` estimates conflict with stored results from the main pipeline.
-Run via: `do "$do/labor_participation_011320.do"` after setting globals.
+Run via: `do "$do/labor_participation.do"` after setting globals.
 
 ### Figure 9 (NPV Scatterplot)
 Scatterplot positions differ slightly from the published paper due to World Bank data vintage

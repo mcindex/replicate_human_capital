@@ -43,7 +43,7 @@ This repository contains the data and code needed to replicate the tables and fi
 
 4. **Labor force participation (Figures 10–11):** These must be run separately in a clean Stata session because `npregress kernel` estimates conflict with the main pipeline. After setting globals, run:
    ```stata
-   do "$do/labor_participation_011320.do"
+   do "$do/labor_participation.do"
    ```
 
 **Estimated total runtime:** ~30 minutes (Stata MP on a modern machine; Step 4 / NPV calculations is the bottleneck at ~15 min).
@@ -57,16 +57,16 @@ replicate_human_capital/
 ├── README.md                     # This file
 ├── .gitignore
 ├── code/                         # All analysis scripts
-│   ├── (1) assemble_102219.do
-│   ├── (2) hc_simulation_120819.do
-│   ├── (3) hc_worldprojections_011320.do
-│   ├── (4) npv_calculations_011320.do
-│   ├── (5) cambodia_counterfactual_011320.do
-│   ├── (6) hc_education_compare_011320.do
-│   ├── (7) fertility_table3_030226.do
-│   ├── 1.1 (background) barrolee_ihme_conversion_011320.do
-│   ├── 2.1 (background) scenario_102219.do
-│   ├── labor_participation_011320.do
+│   ├── (1) assemble.do
+│   ├── (2) hc_simulation.do
+│   ├── (3) hc_worldprojections.do
+│   ├── (4) npv_calculations.do
+│   ├── (5) cambodia_counterfactual.do
+│   ├── (6) hc_education_compare.do
+│   ├── (7) fertility_table3.do
+│   ├── 1.1 (background) barrolee_ihme_conversion.do
+│   ├── 2.1 (background) scenario.do
+│   ├── labor_participation.do
 │   ├── lastgraph.grec
 │   ├── download_wb_2019_vintage.py
 │   ├── generate_replication_report.py
@@ -82,14 +82,14 @@ replicate_human_capital/
 
 | Script | Outputs |
 |--------|---------|
-| (1) `assemble_102219.do` | Assembled master dataset in `output/` |
-| (2) `hc_simulation_120819.do` | HC projections and simulation results |
-| (3) `hc_worldprojections_011320.do` | Figures 2–7 (world projections by income group) |
-| (4) `npv_calculations_011320.do` | Figure 9 (NPV scatterplot) |
-| (5) `cambodia_counterfactual_011320.do` | Figure 8 (Cambodia counterfactual) |
-| (6) `hc_education_compare_011320.do` | Appendix Figures A.1–A.4 (secondary vs. tertiary) |
-| (7) `fertility_table3_030226.do` | Table 3 (fertility channel) |
-| `labor_participation_011320.do` | Figures 10–11 (labor force participation, standalone) |
+| (1) `assemble.do` | Assembled master dataset in `output/` |
+| (2) `hc_simulation.do` | HC projections and simulation results |
+| (3) `hc_worldprojections.do` | Figures 2–7 (world projections by income group) |
+| (4) `npv_calculations.do` | Figure 9 (NPV scatterplot) |
+| (5) `cambodia_counterfactual.do` | Figure 8 (Cambodia counterfactual) |
+| (6) `hc_education_compare.do` | Appendix Figures A.1–A.4 (secondary vs. tertiary) |
+| (7) `fertility_table3.do` | Table 3 (fertility channel) |
+| `labor_participation.do` | Figures 10–11 (labor force participation, standalone) |
 
 ## Replication Notes
 
@@ -100,7 +100,7 @@ Table 3 in the published paper was computed outside of Stata. Script (7) replica
 The World Bank revises historical expenditure data over time. To exactly replicate Figure 9, script (4) uses a December 2019 vintage of the WDI data (`wb_health_education_expenditure_2019vintage.dta`), downloaded via the Python script `code/download_wb_2019_vintage.py`.
 
 ### Figures 10–11 (Labor Force Participation)
-`labor_participation_011320.do` uses `npregress kernel`, which conflicts with stored estimation results from the main pipeline. It must be run in a fresh Stata session.
+`labor_participation.do` uses `npregress kernel`, which conflicts with stored estimation results from the main pipeline. It must be run in a fresh Stata session.
 
 ## Data Availability
 

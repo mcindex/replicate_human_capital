@@ -40,7 +40,7 @@ else {
 *****************************************************************
 
 * Creating frame - we expand the data so we have rows by country, year, age_bin
-use "$output\human_capital_2015_102219`fname'.dta", clear
+use "$output\human_capital_2015`fname'.dta", clear
 keep wbcode age_bin
 local  ts = (endyear - 2015)/5 + 1
 expand `ts'
@@ -53,7 +53,7 @@ keep if age_bin >=20 & age_bin <=60
 mmerge wbcode year age_bin  using "$output/population_bins.dta", type(1:1) unmatched(master) umatch(iso3c year age_bin)
 
 * Merging in starting values of capital, human capital, GDP
-mmerge wbcode year age_bin using "$output\human_capital_2015_102219`fname'.dta", type(1:1) unmatched(master) umatch(wbcode year age_bin)
+mmerge wbcode year age_bin using "$output\human_capital_2015`fname'.dta", type(1:1) unmatched(master) umatch(wbcode year age_bin)
 
 * We will only use the population level data for now, so drop female and male-specific estimates
 drop *FEMALE *MALE
@@ -91,7 +91,7 @@ gen a_hc_constant      = pop_BOTH * hc_BOTH_constant							// Generating total h
 * * * Prior to calculating Scenarios 1 and 2, we run this .do file to calculate the `typical' and `optimistic' scenarios
 * These return two scalars:  hci_gap_5rate_50 and  hci_gap_5rate_75, the hci_gap five year `growth' under these two scenarios (50 = typical and 75 = optimistic)
 preserve
-do "$do/2.1 (background) scenario_102219`fname'.do"
+do "$do/2.1 (background) scenario.do"
 restore
 
 
@@ -150,7 +150,7 @@ gen a_hc_sc5      = pop_BOTH * hc_BOTH_sc5
 *****************************************************************************
 
 * Saving a separate file to make labor force participation rate changes
-save "$output/hcpw_projections_120819.dta", replace
+save "$output/hcpw_projections.dta", replace
 
 * Summing up total working population and total human capital
 collapse (sum) pop_BOTH a_hc* (first) wbcountryname ck gcf* gini pov* gdp Incomegroup Lendingcategory Region, by(wbcode year)	// This gives us total working population for each country year and total HC for that country year
@@ -262,7 +262,7 @@ foreach var of varlist wbcountryname Income Lending Region {
 }
 
 keep wbcode year working_pop_both wbcountryname hcpw_baseline hcpw_constant hcpw_sc* a ck_constant-gdppc_sc5_r total* *_p Incomegroup Lendingcategory Region
-save "$output/hc_projections_102219`fname'.dta", replace
+save "$output/hc_projections`fname'.dta", replace
 
 
 

@@ -14,7 +14,7 @@
 * Our "business as usual" or "typical" scenario will be if each of these components grows at the median rate over 10 years
 	* Our "optimistic" scenario will be if each of these compnents grows at the 75th percentile over 10 years. 
 
-local tertiary = "No" 	
+local tertiary = "$tertiary_mode"
 
 * For the tertiary education check we will use growth rates in the 20-24 age level of tertiary education as recorded in Barro-Lee
 * And then bolt it on to EYS

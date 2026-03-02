@@ -23,7 +23,7 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 		}
 
 		* Loading Projections file
-		use "$output/hc_projections_102219`fname'.dta", clear								
+		use "$output/hc_projections`fname'.dta", clear								
 
 		* Cutting down sample to category of countries we care about
 		if "`cat'" == "world" {														// For world, we keep everything
@@ -155,8 +155,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 		   gr_edit .legend.added_text[3].text = {}
 		   gr_edit .legend.added_text[3].text.Arrpush Primary-Tertiary
 			   
-		   gr export "$graphs/hcpw_`cat'_011320_secter.png", as(png) height(1500) width(2400) replace	
-			gr export "$graphs/hcpw_`cat'_011320_secter.eps", as(eps)  replace	
+		   gr export "$graphs/hcpw_`cat'_secter.png", as(png) height(1500) width(2400) replace	
+			gr export "$graphs/hcpw_`cat'_secter.eps", as(eps)  replace	
 
 
 		   
@@ -193,8 +193,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 		   gr_edit .legend.added_text[3].text = {}
 		   gr_edit .legend.added_text[3].text.Arrpush Primary-Tertiary
 		   
-		   gr export "$graphs/relative_income_`cat'_011320_secter.png", as(png) height(1500) width(2400) replace	
-		   gr export "$graphs/relative_income_`cat'_011320_secter.eps", as(eps)  	 replace	
+		   gr export "$graphs/relative_income_`cat'_secter.png", as(png) height(1500) width(2400) replace	
+		   gr export "$graphs/relative_income_`cat'_secter.eps", as(eps)  	 replace	
 
 	* Poverty figures (Figure 5)
 	local dollarsign = char(36)
@@ -238,8 +238,8 @@ foreach cat in world developing lowincome ssa {									// We produces the same 
 			gr_edit .legend.plotregion1.DragBy .2454284352157902 7.976424144513127
 
 		
-	gr export "$graphs/pov_`cat'_011320_secter.png", as(png) width(2000) replace	
-gr export "$graphs/pov_`cat'_011320_secter.eps", as(eps)  replace	
+	gr export "$graphs/pov_`cat'_secter.png", as(png) width(2000) replace	
+gr export "$graphs/pov_`cat'_secter.eps", as(eps)  replace	
 
 		
 		

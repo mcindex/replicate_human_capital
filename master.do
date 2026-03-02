@@ -47,25 +47,25 @@ global tertiary_mode "No"
 * (1) Assemble all input data for the model
 *     Merges population projections, education, health, investment, GDP,
 *     poverty, and country classification data into a master dataset.
-*     Calls: 1.1 (background) barrolee_ihme_conversion_011320.do
-do "$do/(1) assemble_102219.do"
+*     Calls: 1.1 (background) barrolee_ihme_conversion.do
+do "$do/(1) assemble.do"
 
 * (2) Run the human capital simulation model
 *     Projects human capital per worker under baseline + 5 scenarios,
 *     then calculates GDP per capita and poverty rates over time.
-*     Calls: 2.1 (background) scenario_102219.do
-do "$do/(2) hc_simulation_120819.do"
+*     Calls: 2.1 (background) scenario.do
+do "$do/(2) hc_simulation.do"
 
 * (3) Produce world projection statistics and graphs (Figures 2-7)
 *     Calculates aggregate outcomes for world, developing, low-income, and SSA
-do "$do/(3) hc_worldprojections_011320.do"
+do "$do/(3) hc_worldprojections.do"
 
 * (4) NPV calculations comparing human vs physical capital investment (Figure 9)
 *     WARNING: This file is computationally intensive and takes a long time to run.
-do "$do/(4) npv_calculations_011320.do"
+do "$do/(4) npv_calculations.do"
 
 * (5) Cambodia counterfactual analysis (Figure 8)
-do "$do/(5) cambodia_counterfactual_011320.do"
+do "$do/(5) cambodia_counterfactual.do"
 
 * =============================================================================
 * TERTIARY EDUCATION MODEL (Appendix robustness check)
@@ -75,10 +75,10 @@ do "$do/(5) cambodia_counterfactual_011320.do"
 global tertiary_mode "Yes"
 
 * (1-ter) Assemble data with tertiary education
-do "$do/(1) assemble_102219.do"
+do "$do/(1) assemble.do"
 
 * (2-ter) Run simulation with tertiary education
-do "$do/(2) hc_simulation_120819.do"
+do "$do/(2) hc_simulation.do"
 
 * Save tertiary scenario scalars with "ter" suffix (Step 6 needs both sets)
 scalar hci_gap_5rate_50ter  = hci_gap_5rate_50
@@ -88,23 +88,23 @@ scalar hci_gap_5rate_75pter = hci_gap_5rate_75p
 
 * Restore secondary scenario scalars
 global tertiary_mode "No"
-do "$do/2.1 (background) scenario_102219.do"
+do "$do/2.1 (background) scenario.do"
 
 * (6) Tertiary education robustness checks (Appendix figures)
 *     Compares primary-secondary model to primary-tertiary model
 *     Requires both sec and ter projection files + both sets of scenario scalars
-do "$do/(6) hc_education_compare_011320.do"
+do "$do/(6) hc_education_compare.do"
 
 * (7) Table 3: Effect of HC on GDP through fertility channel (Section 6.1)
 *     Uses log-elasticity from Osili & Long (2008) and Ashraf et al. (2013)
 *     Pop-weighted averages by income group; matches 8/24 cells exactly
-do "$do/(7) fertility_table3_030226.do"
+do "$do/(7) fertility_table3.do"
 
 * =============================================================================
 * STANDALONE SCRIPTS (not part of main pipeline)
 * =============================================================================
 * Labor force participation analysis (Figures 10-11)
 * Must be run in a separate clean Stata session — estimates conflict with main pipeline
-* do "$do/labor_participation_011320.do"
+* do "$do/labor_participation.do"
 
 exit

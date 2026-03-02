@@ -28,7 +28,7 @@ scalar increment = .001						// How much we want to raise the investment rate ea
 clear matrix
 
 * First we get the initial investment rate so we can set the lower bound of the loop
-use "$output\human_capital_2015_102219.dta", clear
+use "$output\human_capital_2015.dta", clear
 keep wbcode gcf
 duplicates drop 
 rename      gcf gcf_initial
@@ -36,7 +36,7 @@ tempfile    gcf
 save       `gcf', replace
 
 * Start by retrieving just NPVs for each scenario for each country 
-use "$output/hc_projections_102219.dta", clear						
+use "$output/hc_projections.dta", clear						
 
 * Generate NPV of each GDP per capita `flow' at the 5 year mark
 foreach scenario in baseline sc4 sc5 {
@@ -86,7 +86,7 @@ preserve																		// Preserving as we are going to return to this data e
 			* Now we start up a new simulation exercise using the new investment rate *
 			***************************************************************************
 			* Creating frame
-			use "$output\human_capital_2015_102219.dta", clear
+			use "$output\human_capital_2015.dta", clear
 			keep wbcode age_bin
 			local  ts = (endyear - 2015)/5 + 1
 			expand `ts'
@@ -99,7 +99,7 @@ preserve																		// Preserving as we are going to return to this data e
 			mmerge wbcode year age_bin  using "$output/population_bins.dta", type(1:1) unmatched(master) umatch(iso3c year age_bin)
 
 			* Merging in starting values of capital, human capital, GDP
-			mmerge wbcode year age_bin using "$output\human_capital_2015_102219.dta", type(1:1) unmatched(master) umatch(wbcode year age_bin)
+			mmerge wbcode year age_bin using "$output\human_capital_2015.dta", type(1:1) unmatched(master) umatch(wbcode year age_bin)
 
 			* We will only use the population level data for now, so drop female and male-specific estimates
 			drop *FEMALE *MALE
@@ -255,19 +255,19 @@ foreach c in `country' {														// Looping over countries
 	}
 }
 
-save "$output/gcf_pv_102219.dta", replace
+save "$output/gcf_pv.dta", replace
 
 *********************
 * Additional graphs *
 *********************
 
 * Producing new graph showing how these GCFs change according to income
-use "$output/hc_projections_102219.dta", clear
+use "$output/hc_projections.dta", clear
 keep if year == 2015
 tempfile i 
 save    `i', replace 
 
-use "$output/gcf_pv_102219.dta", clear
+use "$output/gcf_pv.dta", clear
 mmerge wbcode using 		`i'								 , ukeep(gdppc_constant)        // Bringing in starting levels of gdp
 mmerge wbcode 	      using "$output/country_categories.dta" , type(1:1) unmatched(master)  // WB Country Categories
 
@@ -294,12 +294,12 @@ restore
 
 gen age_bin = 20
 mmerge wbcode         using `eh'	   							   , umatch(countrycode) ukeep(educ health)  unmatched(master) // Bringing in cost of health and educatoin
-mmerge wbcode age_bin using "$output\human_capital_2015_102219.dta",                     ukeep(hc_BOTH)      unmatched(master) // Bringing in starting levels of human capital
+mmerge wbcode age_bin using "$output\human_capital_2015.dta",                     ukeep(hc_BOTH)      unmatched(master) // Bringing in starting levels of human capital
 drop age_bin
 gen cost_hci = hc_BOTH/(educ_gdp + health_gdp)
 
 preserve
-	do "$do/2.1 (background) scenario_102219.do" 								// Re-calculating the `typical' scenario
+	do "$do/2.1 (background) scenario.do" 								// Re-calculating the `typical' scenario
 restore
 di hci_gap_5rate_50 
 
@@ -322,8 +322,8 @@ twoway (scatter cost_50 diff_sc4, mcolor(black%80) msymbol(none) mlabel(wbcode) 
        ytitle(Extra human capital investment (% of GDP))    ///
 	   xtitle(Extra physical capital investment (% of GDP)) ///
 	   graphregion(fcolor(white) lcolor(white)) legend(off)
-gr export "$graphs/cost_corr50_011320.png", as(png) width(3000) replace	
-gr export "$graphs/cost_corr50_011320.eps", as(eps) replace	
+gr export "$graphs/cost_corr50.png", as(png) width(3000) replace	
+gr export "$graphs/cost_corr50.eps", as(eps) replace	
 
  
 sum cost_75
@@ -334,8 +334,8 @@ twoway (scatter cost_75 diff_sc5, mlabcolor(black%80)  msymbol(none) mlabel(wbco
        ytitle(Extra human capital investment (% of GDP))    ///
 	   xtitle(Extra physical capital investment (% of GDP)) ///
 	   graphregion(fcolor(white) lcolor(white)) legend(off)
- gr export "$graphs/cost_corr75_011320.png", as(png) width(3000) replace	
- gr export "$graphs/cost_corr75_011320.eps", as(eps)  replace
+ gr export "$graphs/cost_corr75.png", as(png) width(3000) replace	
+ gr export "$graphs/cost_corr75.eps", as(eps)  replace
 
 * Producing scatterplot comparing ratio of costs by starting GDP per capita
 gen ratio_50 = diff_sc4 / cost_50
@@ -345,16 +345,16 @@ twoway (scatter ratio_50 gdppc_constant, mcolor(black%80) msymbol(none) mlabel(w
        , ytitle(Ratio of required physical capital investment to human capital) ytitle(, size(small))                   ///
 	     xtitle(Log(GDP per capita) (2015)) xscale(log) xlabel(1000 "1,000" 10000 "10,000" 100000 "100,000")            ///
 		 graphregion(fcolor(white) lcolor(white))  
-gr export "$graphs/cost_ratio50_011320.png", as(png) width(3000) replace	
-gr export "$graphs/cost_ratio50_011320.eps", as(eps)   replace	
+gr export "$graphs/cost_ratio50.png", as(png) width(3000) replace	
+gr export "$graphs/cost_ratio50.eps", as(eps)   replace	
 
  
 twoway (scatter ratio_75 gdppc_constant, mcolor(black%80) msymbol(none) mlabel(wbcode) mlabcolor(black%80) mlabposition(0)) ///
        , ytitle(Ratio of required physical capital investment to human capital) ytitle(, size(small))                   ///
 	     xtitle(Log(GDP per capita) (2015)) xscale(log) xlabel(1000 "1,000" 10000 "10,000" 100000 "100,000")            ///
 		 graphregion(fcolor(white) lcolor(white)) 
-gr export "$graphs/cost_ratio75_011320.png", as(png) width(3000) replace	
-gr export "$graphs/cost_ratio75_011320.eps", as(eps) replace	
+gr export "$graphs/cost_ratio75.png", as(png) width(3000) replace	
+gr export "$graphs/cost_ratio75.eps", as(eps) replace	
 
 
 exit

@@ -75,7 +75,7 @@ graph combine ihme bl,   cols(2) note("Note: solid line indicates predicted valu
 				  
 	  
 * Exporting for use in the paper
-gr export "$graphs/barrolee_ihme_011320.png", as(png) width(2500) replace	
-gr export "$graphs/barrolee_ihme_011320.eps", as(eps)  replace	
+gr export "$graphs/barrolee_ihme.png", as(png) width(2500) replace	
+gr export "$graphs/barrolee_ihme.eps", as(eps)  replace	
 		
 exit

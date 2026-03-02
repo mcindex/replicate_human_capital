@@ -247,7 +247,7 @@ gen ys_BOTH = ys_FEMALE * (pop_FEMALE/pop_BOTH) + ys_MALE * (pop_MALE/pop_BOTH) 
 * Calculating conversion factors between IHME and Barro-Lee
 save "$output/IHME_conversion.dta", replace										// Using this later to convert IHME years of schooling
 preserve
-	do "$do/1.1 (background) barrolee_ihme_conversion_011320.do"
+	do "$do/1.1 (background) barrolee_ihme_conversion.do"
 restore
 
 replace     ys_BOTH = biyr1*ys_BOTH + biyr2*ys_BOTH^2 + bicons					// Converting to Barro-Lee (Pri-Tert)
@@ -525,4 +525,4 @@ drop if asr_BOTH   == .
 
 
 * *	* * * * *  Saving the file for T0 (2015) * 	* 	* 	* 	* 
-save "$output\human_capital_2015_102219`fname'.dta", replace
+save "$output\human_capital_2015`fname'.dta", replace
