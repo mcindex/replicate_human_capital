@@ -1,0 +1,92 @@
+# Replication Guide — Human Capital Investment Paper
+
+## Quick Start
+1. Install Stata 15+ (MP recommended)
+2. Open `master.do` and set `$root` to your project directory
+3. Run `master.do` — it handles everything including package loading
+
+## Stata Scripts (run order via master.do)
+
+All Stata .do files are in `code/`. User-written packages are bundled in `code/ado/`.
+
+| Order | File | Description | Runtime |
+|-------|------|-------------|---------|
+| 1 | `(1) assemble_102219.do` | Assembles all input data. Calls 1.1 background. | ~1 min |
+| 1.1 | `1.1 (background) barrolee_ihme_conversion_011320.do` | IHME→Barro-Lee conversion. Called by (1). | (called) |
+| 2 | `(2) hc_simulation_120819.do` | Main simulation. Calls 2.1 background. | ~2 min |
+| 2.1 | `2.1 (background) scenario_102219.do` | Scenario calculations. Called by (2), (4), (5). | (called) |
+| 3 | `(3) hc_worldprojections_011320.do` | World projections & graphs (Figs 2-7). | ~1 min |
+| 4 | `(4) npv_calculations_011320.do` | NPV calculations (Fig 9). **Slow.** | ~15 min |
+| 5 | `(5) cambodia_counterfactual_011320.do` | Cambodia analysis (Fig 8). | ~2 min |
+| 1-ter | `(1) assemble_102219.do` | Re-run with tertiary education. | ~1 min |
+| 2-ter | `(2) hc_simulation_120819.do` | Re-run with tertiary education. | ~2 min |
+| 6 | `(6) hc_education_compare_011320.do` | Sec vs ter comparison (Appendix). | ~1 min |
+| 7 | `(7) fertility_table3_030226.do` | Table 3: fertility channel (Sec 6.1). | ~10 sec |
+| -- | `labor_participation_011320.do` | LFP analysis (Figs 10-11, standalone). | ~5 min |
+
+## Input Data
+
+All in `input/`. 20 files total:
+
+| File | Description | Source |
+|------|-------------|--------|
+| BL2013_*_v2.1.dta (3 files) | Barro-Lee education data (M, F, MF) | Barro & Lee (2013) |
+| WPP2017_POP_F07_*.xlsx (3 files) | UN Population projections by age/sex | UN Population Division |
+| IHME_GBD_2016_...csv | IHME years of schooling | IHME GBD 2016 |
+| hci_data_21Sept2018_FINAL.dta | World Bank HCI database | Kraay (2018) |
+| hlo_data_21Sept2018.dta | Harmonized Learning Outcomes | World Bank HCP |
+| asr_data_21Sept2018.dta | Adult survival rates | World Bank HCP |
+| stunting_data_21Sept2018.dta | Child stunting data | World Bank HCP |
+| masterdata.dta | HCI master country list | World Bank HCP |
+| pwt90.dta | Penn World Table 9.0 | Feenstra et al. |
+| gdp_constant_ppp.xls | GDP (constant 2011 PPP) | World Bank WDI |
+| gross_capital_formation_0718.xls | Gross capital formation (% GDP) | World Bank WDI |
+| CLASS.xls | WB income classifications | World Bank |
+| 2015 line up.xlsx | Poverty headcounts & Gini | World Bank PovcalNet |
+| data-2019-12-06.dta | ILO labor force participation | ILO |
+| wb_health_education_expenditure.dta | Health & education expenditure (% GDP) | World Bank WDI (downloaded 2026-03-02 via `wbopendata`; indicators: se.xpd.totl.gd.zs, sh.xpd.chex.gd.zs) |
+
+## Output
+
+- Intermediate datasets → `output/`
+- Figures and graphs → `figures_tables/`
+- LaTeX result macros → `output/results*.tex`
+
+## Bundled Packages (code/ado/)
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| mmerge | - | Flexible merge command |
+| kountry | - | Country name/code conversion |
+| texresults | - | Export scalars to LaTeX macros |
+| wbopendata | - | World Bank API access (used in Step 4) |
+
+## Replication Notes
+
+### Table 3 (Fertility Channel)
+Table 3 in the published paper was computed outside of Stata (no original .do file existed).
+File (7) replicates it using population-weighted averages (by projected 2050 working-age population)
+with the log-elasticity formula from Section 6.1. Results match 8 of 24 cells exactly and are
+within 0.1–0.5 pp for the rest. See the .do file header for full methodology.
+
+### Figures 10-11 (Labor Force Participation)
+`labor_participation_011320.do` must be run in a separate, clean Stata session because
+`npregress kernel` estimates conflict with stored results from the main pipeline.
+Run via: `do "$do/labor_participation_011320.do"` after setting globals.
+
+### Figure 9 (NPV Scatterplot)
+Scatterplot positions differ slightly from the published paper due to World Bank data vintage
+(2026 download vs ~2019 original). The World Bank revises historical data; exact replication
+would require a 2019-vintage API snapshot.
+
+## Python Scripts
+
+| File | Description |
+|------|-------------|
+| `generate_replication_report.py` | HTML replication report with side-by-side figure comparison |
+
+## R Scripts
+(To be added after Stata replication is complete)
+
+## R Scripts
+(To be added after Stata replication is complete)

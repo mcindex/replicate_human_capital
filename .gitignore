@@ -1,0 +1,67 @@
+# =============================================================================
+# .gitignore — Replication package for Collin & Weil (2020)
+# =============================================================================
+
+# --- Claude Code settings ---
+.claude/
+
+# --- Archive / historical directories ---
+_extracted/
+old_data/
+old_dos/
+
+# --- Original zip ---
+do files and data - hci paper.zip
+
+# --- Not needed for replication ---
+lit/
+paper/
+memory/
+
+# --- Project management files ---
+CLAUDE.md
+status.md
+
+# --- Stata log files ---
+*.log
+
+# --- Temporary runner / debug scripts (root) ---
+run_*.do
+table3_debug*.do
+
+# --- Temporary runner / debug scripts (code/) ---
+code/run_*.do
+code/run_*.log
+code/table3_debug*.do
+
+# --- Unused code files ---
+code/2.1 (background) scenario_102219ter.do
+code/do file list.do
+
+# --- Generated output (intermediate datasets + LaTeX) ---
+output/*.dta
+output/*.tex
+
+# --- Generated figures ---
+figures_tables/*
+!figures_tables/.gitkeep
+
+# --- Generated reports ---
+analysis/*.html
+analysis/*.pdf
+analysis/*.aux
+analysis/*.out
+analysis/*.log
+analysis/*.tex
+!analysis/.gitkeep
+
+# --- LaTeX auxiliary files ---
+*.aux
+*.bbl
+*.blg
+*.out
+*.synctex.gz
+
+# --- Large input files (>50 MB) ---
+# See input/README.md for download instructions
+input/hci_data_21Sept2018_FINAL.dta

@@ -1,0 +1,69 @@
+StataFileTM:00001:01100:GREC:                          :
+00005:00004:00001:
+*! classname: twowaygraph_g
+*! family: twoway
+*! date: 13 Jan 2020
+*! time: 15:22:37
+*! graph_scheme: modern
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.textbox1.DragBy -.670724437469677 .0893992833685638
+// text() 1 reposition
+
+.plotregion1.textbox9.DragBy 3.475572085070106 .0736229392447023
+// text() 9 reposition
+
+.plotregion1.textbox9.DragBy .7926743351914504 .0105175627492419
+// text() 9 reposition
+
+.plotregion1.textbox8.DragBy -.1219498977217494 .1472458784894028
+// text() 8 reposition
+
+.plotregion1.textbox2.DragBy -.365849693165282 .1472458784894028
+// text() 2 reposition
+
+.plotregion1.textbox7.DragBy .4877995908870362 .247162724607212
+// text() 7 reposition
+
+.plotregion1.textbox6.DragBy .182924846582641 .1735397853625104
+// text() 6 reposition
+
+.plotregion1.textbox6.DragBy .4877995908870362 -.0262939068731076
+// text() 6 reposition
+
+.plotregion1.textbox5.DragBy .2438997954435084 .1472458784894028
+// text() 5 reposition
+
+.plotregion1.textbox4.DragBy .182924846582641 .1840573481117531
+// text() 4 reposition
+
+.plotregion1.textbox3.DragBy .182924846582641 .1840573481117556
+// text() 3 reposition
+
+.plotregion1.textbox3.DragBy 1.280473926078477 -.7520057365708825
+// text() 3 reposition
+
+.plotregion1.textbox3.DragBy -7.926743351914322 -4.322718289938908
+// text() 3 reposition
+
+.plotregion1.textbox5.DragBy 1.829248465826371 -.389149821721995
+// text() 5 reposition
+
+.plotregion1.textbox5.DragBy -4.51214621570508 -4.696091767537037
+// text() 5 reposition
+
+.plotregion1.textbox4.DragBy .4877995908870555 -.0210351254984871
+// text() 4 reposition
+
+.plotregion1.textbox6.DragBy -.0609749488608867 .0262939068731076
+// text() 6 reposition
+
+.plotregion1.textbox7.DragBy .2438997954435278 -.0578465951208365
+// text() 7 reposition
+
+
+// <end>
