@@ -97,7 +97,8 @@ do "$do/(6) hc_education_compare.do"
 
 * (7) Table 3: Effect of HC on GDP through fertility channel (Section 6.1)
 *     Uses log-elasticity from Osili & Long (2008) and Ashraf et al. (2013)
-*     Pop-weighted averages by income group; matches 8/24 cells exactly
+*     Hybrid aggregate-then-transform: working_pop for HC/fert, total_pop for GDP
+*     Matches 14/24 cells exactly; remaining 10 within 0.1-0.2pp
 do "$do/(7) fertility_table3.do"
 
 * =============================================================================

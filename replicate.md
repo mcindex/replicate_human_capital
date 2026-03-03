@@ -85,8 +85,29 @@ would require a 2019-vintage API snapshot.
 |------|-------------|
 | `generate_replication_report.py` | HTML replication report with side-by-side figure comparison |
 
-## R Scripts
-(To be added after Stata replication is complete)
+## R Scripts (code/R/)
 
-## R Scripts
-(To be added after Stata replication is complete)
+R replication of the Stata pipeline, translated by Claude Code. Not independently reviewed by the authors.
+
+| Order | File | Description | Status |
+|-------|------|-------------|--------|
+| -- | `master.R` | Entry point: sets paths, loads packages, sources all scripts | TESTED |
+| -- | `country_names.R` | Helper: country name standardization & ISO3C mapping | TESTED |
+| -- | `scenario_calc.R` | Equiv of 2.1 background: compute HCI gap closure rates | TESTED |
+| 1 | `01_assemble.R` | Equiv of (1) assemble.do + 1.1 background | PASS |
+| 2 | `02_hc_simulation.R` | Equiv of (2) hc_simulation.do + scenario | PASS |
+| 3 | `03_hc_worldprojections.R` | Equiv of (3): Figures 2-7 | PASS |
+| 4 | `04_npv_calculations.R` | Equiv of (4): Figure 9, NPV search | PASS |
+| 5 | `05_cambodia_counterfactual.R` | Equiv of (5): Figure 8 | PASS |
+| 6 | `06_hc_education_compare.R` | Equiv of (6): Appendix sec vs ter | PASS |
+| 7 | `07_fertility_table3.R` | Equiv of (7): Table 3 fertility channel | PASS |
+| 8 | `08_labor_participation.R` | Equiv of labor_participation.do: Figs 10-11 | PASS |
+| -- | `validate_vs_stata.R` | Observation-level validation (331k comparisons, 6 stages) | utility |
+| -- | `run_and_validate.R` | Run full pipeline then validate | utility |
+| -- | `test_pipeline.R` | Full pipeline validation against Stata output | utility |
+
+### Notes (updated 2026-03-03)
+- All R figures output with `_R` suffix to avoid overwriting Stata output.
+- R has 145 countries vs Stata's 144 (1 extra from IHME/BL mapping).
+- Nigeria shows ~1-4% deviation due to IHME conversion input difference.
+- Required R packages: haven, readxl, dplyr, tidyr, ggplot2, countrycode, data.table, stringr, purrr, scales, patchwork.

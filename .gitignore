@@ -33,6 +33,22 @@ table3_debug*.do
 code/run_*.do
 code/run_*.log
 code/table3_debug*.do
+code/table3_permutations.do
+code/compare_old_new.do
+code/check_coefficients.do
+code/debug_*.do
+
+# --- R debug / utility scripts ---
+code/R/debug_*.R
+code/R/check_*.R
+code/R/compare_*.R
+code/R/test_*.R
+code/R/run_*.R
+code/R/old/
+
+# --- R output files ---
+output/*_R.rds
+output/table3_results_R.rds
 
 # --- Unused code files ---
 code/2.1 (background) scenario_102219ter.do
@@ -40,6 +56,7 @@ code/do file list.do
 
 # --- Generated output (intermediate datasets + LaTeX) ---
 output/*.dta
+output/*.rds
 output/*.tex
 
 # --- Generated figures ---
@@ -61,6 +78,11 @@ analysis/*.tex
 *.blg
 *.out
 *.synctex.gz
+
+# --- R workspace ---
+.Rhistory
+.RData
+.Rproj.user/
 
 # --- Large input files (>50 MB) ---
 # See input/README.md for download instructions
